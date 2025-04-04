@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Metaball Contour Animation</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/dat-gui/0.7.9/dat.gui.min.js"></script>
+
+</head>
+<body>
+    <canvas id="canvas"></canvas>
+    <span id="fpsIndicator">FPS: </span>
+    <div id="videoRecordingMessageDiv" class="hidden sticky-top">
+        Video recording underway. Press 🎥 button or "v" to stop. The video will save to your downloads folder after.
+    </div>
+</body>
+
+<script src="mp4-muxer-main/build/mp4-muxer.js"></script>
+<script src="helperFunctions.js"></script>
+<script src="canvasVideoExport.js"></script>
+<script src="main.js"></script>
+
+</html>
