@@ -2,7 +2,7 @@
 
 A procedural terrain generator that creates contour-style landscapes in real-time using 3D metaballs and marching squares algorithm.
 
-##Live demo: [https://collidingscopes.github.io/curious-contours/](https://collidingscopes.github.io/curious-contours/)
+**Live demo: [https://collidingscopes.github.io/curious-contours/](https://collidingscopes.github.io/curious-contours/)**
 
 <img src="assets/siteOGImage.png">
 
@@ -22,6 +22,22 @@ Curious Contours uses 3D spheres (metaballs) that float around and combine with 
 - Use the controls to adjust settings
 - Click the randomize button (🎲) for new variations
 - Save your creations as images (📷) or videos (🎥)
+
+## Installation
+
+1. Clone the repository:
+   ```
+   git clone https://github.com/collidingScopes/curious-contours.git
+   ```
+
+2. Navigate to the project directory:
+   ```
+   cd curious-contours
+   ```
+
+3. Open `index.html` in your browser to run locally.
+
+No build process or dependencies to install - it works right out of the box!
 
 ## Tech Stack
 
