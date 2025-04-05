@@ -28,6 +28,8 @@ const config = {
     renderScale: 0.7,
     noiseIntensity: 0.35,
     fillOpacity: 1.0,  // Added opacity for the pastel fills
+    backgroundColor: '#f0eadc', // New parameter for background color
+    animationSpeed: 1.0, // New parameter for animation speed
 };
 
 // Define 3D space boundaries
@@ -69,22 +71,25 @@ class Metaball {
     }
     
     update() {
-        // Move metaball
-        this.x += this.vx;
-        this.y += this.vy;
-        this.z += this.vz;
-        
-        // Apply force toward center
-        const distanceFromCenter = Math.sqrt(this.x * this.x + this.y * this.y + this.z * this.z);
-        if (distanceFromCenter > 400) {
-            const forceStrength = config.centerForce * (1 + (distanceFromCenter - 400) * 0.01);
-            const forceX = -this.x * forceStrength;
-            const forceY = -this.y * forceStrength;
-            const forceZ = -this.z * forceStrength;
+        // Apply animation speed to movement
+        if (config.animationSpeed > 0) {
+            // Move metaball with animation speed factor
+            this.x += this.vx * config.animationSpeed;
+            this.y += this.vy * config.animationSpeed;
+            this.z += this.vz * config.animationSpeed;
             
-            this.vx += forceX;
-            this.vy += forceY;
-            this.vz += forceZ;
+            // Apply force toward center
+            const distanceFromCenter = Math.sqrt(this.x * this.x + this.y * this.y + this.z * this.z);
+            if (distanceFromCenter > 400) {
+                const forceStrength = config.centerForce * (1 + (distanceFromCenter - 400) * 0.01);
+                const forceX = -this.x * forceStrength;
+                const forceY = -this.y * forceStrength;
+                const forceZ = -this.z * forceStrength;
+                
+                this.vx += forceX * config.animationSpeed;
+                this.vy += forceY * config.animationSpeed;
+                this.vz += forceZ * config.animationSpeed;
+            }
         }
     }
     
@@ -273,7 +278,8 @@ function generateFieldSlice(y, gridSize) {
 function transformPoint(point) {
     // Apply dynamic X rotation that slowly changes over time
     const time = performance.now() * 0.0001;
-    const dynamicRotation = config.xRotation + Math.sin(time) * Math.PI;
+    // Also apply animation speed to the rotation
+    const dynamicRotation = config.xRotation + Math.sin(time * config.animationSpeed) * Math.PI;
     
     const rotY = point.y * Math.cos(dynamicRotation) - point.z * Math.sin(dynamicRotation);
     const rotZ = point.y * Math.sin(dynamicRotation) + point.z * Math.cos(dynamicRotation);
@@ -324,8 +330,8 @@ function render() {
     }
     fpsIndicator.textContent = "FPS: "+fps;
     
-    // Clear canvas
-    ctx.fillStyle = '#f0eadc';
+    // Clear canvas with background color
+    ctx.fillStyle = config.backgroundColor;
     ctx.fillRect(0, 0, canvas.width, canvas.height);
     
     // Update metaballs
@@ -427,8 +433,17 @@ function render() {
 function setupGUI() {
     const gui = new dat.GUI();
     
+
     // Animation controls
     const animationFolder = gui.addFolder('Animation');
+    animationFolder.add(config, 'animationSpeed', 0.0, 2.0).step(0.01)
+    .name('Animation Speed')
+    .onChange(value => {
+        // Special handling for zero (paused state)
+        if (value === 0) {
+            console.log("Animation paused");
+        }
+    });
     animationFolder.add(config, 'numSpheres', 1, 30).step(1).onChange(restartAnimation);
     animationFolder.add(config, 'slices', 5, 60).step(1);
     animationFolder.add(config, 'xRotation', 0, Math.PI * 2).step(0.01);
@@ -449,9 +464,11 @@ function setupGUI() {
     renderFolder.add(config, 'isoLevel', 0.1, 1.5).step(0.01);
     renderFolder.add(config, 'yMin', -800, 0).step(10);
     renderFolder.add(config, 'yMax', 0, 800).step(10);
-    renderFolder.add(config, 'noiseIntensity', 0, 1).step(0.01);
     renderFolder.add(config, 'fillOpacity', 0, 1).step(0.01);
     
+    renderFolder.addColor(config, 'backgroundColor').name('bgColor');
+    renderFolder.add(config, 'noiseIntensity', 0, 1).step(0.01);
+
     // Add a button to randomize colors
     renderFolder.add({
         randomizeColors: function() {
@@ -482,6 +499,8 @@ function setupGUI() {
                 renderScale: 0.7,
                 noiseIntensity: 0.35,
                 fillOpacity: 1.0,
+                backgroundColor: '#f0eadc', // Include new parameters in defaults
+                animationSpeed: 1.0,
             };
             
             // Reset all values

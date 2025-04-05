@@ -291,15 +291,15 @@ html, body{
   }
   
   #aboutText{
-    font-size: 60px;
-  
-    font-family: "Modak", system-ui;
+    font-size: 40px;
+    font-family: Helvetica, sans-serif;
+    /* font-family: "Modak", system-ui;
     font-optical-sizing: auto;
     font-weight: 400;
     font-style: normal;
     font-variation-settings:
       "MORF" 15,
-      "SHLN" 50;
+      "SHLN" 50; */
   
     display:block;
     padding: 0;
@@ -315,8 +315,8 @@ html, body{
     justify-content: center;
     align-items: center;
     /*border-top: 5px solid #581845;*/
-    background-color: #151632;
-    color: white;
+    background-color: #f0eadc;
+    color: rgb(43, 18, 5);
     font-family: Helvetica, Arial, sans-serif;
   }
   

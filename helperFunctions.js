@@ -125,11 +125,12 @@ function randomizeInputs() {
   refreshPattern();
 }
 
-/*
-document.getElementById('randomizeBtn').addEventListener('click', () => randomizeInputs());
-document.getElementById('playPauseBtn').addEventListener('click', () => togglePlayPause());
+
+document.getElementById('randomizeBtn').addEventListener('click', () => restartAnimation());
 document.getElementById('exportVideoBtn').addEventListener('click', () => toggleVideoRecord());
 document.getElementById('saveBtn').addEventListener('click', () => saveImage());
+/*
+document.getElementById('playPauseBtn').addEventListener('click', () => togglePlayPause());
 document.getElementById('toggleMusicBtn').addEventListener('click', () => toggleMusic());
 document.getElementById('zen-mode-button').addEventListener('click', () => toggleZenMode());
 */
