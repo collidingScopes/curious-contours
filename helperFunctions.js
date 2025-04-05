@@ -185,7 +185,7 @@ function restartAnimation(customConfig = {}) {
   
   // Reinitialize metaballs
   metaballs.length = 0;
-  for (let i = 0; i < config.numMetaballs; i++) {
+  for (let i = 0; i < config.numSpheres; i++) {
       metaballs.push(new Metaball());
   }
   

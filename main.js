@@ -14,15 +14,15 @@ let fpsIndicator = document.querySelector("#fpsIndicator");
 
 // Configuration
 const config = {
-    numMetaballs: 14,
+    numSpheres: 14,
     slices: 30,
     isoLevel: 0.5,
     xRotation: Math.PI*0.0,
     centerForce: 0.0012,
-    metaballRadiusMin: 10,
-    metaballRadiusMax: 90,
-    metaballSpeedMin: 0.0,
-    metaballSpeedMax: 0.2,
+    radiusMin: 10,
+    radiusMax: 90,
+    speedMin: 0.0,
+    speedMax: 0.2,
     yMin: -400,
     yMax: 400,
     renderScale: 0.7,
@@ -55,11 +55,11 @@ class Metaball {
         this.y = (Math.random() * 2 - 1) * 0;
         this.z = (Math.random() * 2 - 1) * 400;
         
-        this.radius = config.metaballRadiusMin + Math.random() * (config.metaballRadiusMax - config.metaballRadiusMin);
+        this.radius = config.radiusMin + Math.random() * (config.radiusMax - config.radiusMin);
         
         // Random velocity direction
         const angle = Math.random() * Math.PI * 2;
-        const speed = config.metaballSpeedMin + Math.random() * (config.metaballSpeedMax - config.metaballSpeedMin);
+        const speed = config.speedMin + Math.random() * (config.speedMax - config.speedMin);
         this.vx = Math.cos(angle) * speed;
         this.vy = (Math.random() * 2 - 1) * speed;
         this.vz = Math.sin(angle) * speed;
@@ -100,7 +100,7 @@ class Metaball {
 
 // Initialize metaballs
 const metaballs = [];
-for (let i = 0; i < config.numMetaballs; i++) {
+for (let i = 0; i < config.numSpheres; i++) {
     metaballs.push(new Metaball());
 }
 
@@ -429,18 +429,18 @@ function setupGUI() {
     
     // Animation controls
     const animationFolder = gui.addFolder('Animation');
-    animationFolder.add(config, 'numMetaballs', 1, 30).step(1).onChange(restartAnimation);
+    animationFolder.add(config, 'numSpheres', 1, 30).step(1).onChange(restartAnimation);
     animationFolder.add(config, 'slices', 5, 60).step(1);
     animationFolder.add(config, 'xRotation', 0, Math.PI * 2).step(0.01);
     animationFolder.add(config, 'renderScale', 0.1, 2.0).step(0.05);
     animationFolder.open();
     
     // Metaball controls
-    const metaballFolder = gui.addFolder('Metaballs');
-    metaballFolder.add(config, 'metaballRadiusMin', 5, 50).step(1).onChange(restartAnimation);
-    metaballFolder.add(config, 'metaballRadiusMax', 50, 200).step(1).onChange(restartAnimation);
-    metaballFolder.add(config, 'metaballSpeedMin', 0.0, 0.5).step(0.01).onChange(restartAnimation);
-    metaballFolder.add(config, 'metaballSpeedMax', 0.0, 1.0).step(0.01).onChange(restartAnimation);
+    const metaballFolder = gui.addFolder('Spheres');
+    metaballFolder.add(config, 'radiusMin', 5, 50).step(1).onChange(restartAnimation);
+    metaballFolder.add(config, 'radiusMax', 50, 200).step(1).onChange(restartAnimation);
+    metaballFolder.add(config, 'speedMin', 0.0, 0.5).step(0.01).onChange(restartAnimation);
+    metaballFolder.add(config, 'speedMax', 0.0, 1.0).step(0.01).onChange(restartAnimation);
     metaballFolder.add(config, 'centerForce', 0.0001, 0.005).step(0.0001);
     metaballFolder.open();
     
@@ -468,15 +468,15 @@ function setupGUI() {
         resetDefaults: function() {
             // Store original config values
             const defaultConfig = {
-                numMetaballs: 14,
+                numSpheres: 14,
                 slices: 30,
                 isoLevel: 0.5,
                 xRotation: Math.PI*0.0,
                 centerForce: 0.0012,
-                metaballRadiusMin: 10,
-                metaballRadiusMax: 90,
-                metaballSpeedMin: 0.0,
-                metaballSpeedMax: 0.2,
+                radiusMin: 10,
+                radiusMax: 90,
+                speedMin: 0.0,
+                speedMax: 0.2,
                 yMin: -400,
                 yMax: 400,
                 renderScale: 0.7,
