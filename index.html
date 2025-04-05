@@ -3,10 +3,28 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Metaball Contour Animation</title>
+    <title>Curious Contours: procedural terrain generator</title>
     <link rel="stylesheet" href="styles.css">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/dat-gui/0.7.9/dat.gui.min.js"></script>
 
+    <!-- Primary Meta Tags -->
+    <meta name="title" content="Curious Contours">
+    <meta name="description" content="Procedural terrain generator using 3D metaballs">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://collidingscopes.github.io/curious-contours/">
+    <meta property="og:title" content="Curious Contours">
+    <meta property="og:description" content="Procedural terrain generator using 3D metaballs">
+    <meta property="og:image" content="https://raw.githubusercontent.com/collidingScopes/curious-contours/main/assets/siteOGImage.png">
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://collidingscopes.github.io/curious-contours/">
+    <meta property="twitter:title" content="Curious Contours">
+    <meta property="twitter:description" content="Procedural terrain generator using 3D metaballs">
+    <meta property="twitter:image" content="https://raw.githubusercontent.com/collidingScopes/curious-contours/main/assets/siteOGImage.png">
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/dat-gui/0.7.9/dat.gui.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <script defer src="https://cloud.umami.is/script.js" data-website-id="eb59c81c-27cb-4e1d-9e8c-bfbe70c48cd9"></script>
 </head>
@@ -38,6 +56,7 @@
         <div id="textBox">
             <h2 id="aboutText">Curious Contours; procedural terrain generator ⛰️</h2>
             <p>This is a free web tool to create procedural terrain textures in real-time in the browser.</p>
+            <p>How this works: a bunch of 3D spheres (meta-balls) are drawn on the canvas. They float around and combine with others based on distance. Then, 2D cross-sections are drawn using a Marching Squares algorithm. This ends up producing a terrain contour aesthtetic.</p>
             <p>Use the controls at the top-right to set animation speed, size, level of complexity, rotation, colours, and more.</p>
             <p>Use the buttons at the bottom-right to randomize the output, and export as image or mp4 video.</p>
             <p>This tool is completely free, open source (MIT license), without any paywalls or premium options. You are welcome to use it for personal or commercial purposes.</p>

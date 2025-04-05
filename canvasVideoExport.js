@@ -1,4 +1,4 @@
-let projectName = "metaball"; //to be updated
+let projectName = "contour"; //to be updated
 
 //detect user browser
 var ua = navigator.userAgent;
